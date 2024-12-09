@@ -28,6 +28,11 @@ echo "Generando lista de alias personalizados..."
 alias > /tmp/aliases_backup.txt
 BACKUP_ITEMS+=("/tmp/aliases_backup.txt")
 
+# Respaldar configuración completa de Zsh
+echo "Generando respaldo completo de la configuración de Zsh..."
+cp "/home/$USER/.zshrc" /tmp/zshrc_backup.txt
+BACKUP_ITEMS+=("/tmp/zshrc_backup.txt")
+
 # Crear el archivo comprimido
 echo "Creando archivo comprimido..."
 tar -czvf "$BACKUP_FILE" "${BACKUP_ITEMS[@]}"
@@ -45,6 +50,7 @@ fi
 echo "Limpiando archivos temporales..."
 rm /tmp/installed_packages.txt
 rm /tmp/aliases_backup.txt
+rm /tmp/zshrc_backup.txt
 
 # Confirmación final
 echo "Proceso completado."
